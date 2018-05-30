@@ -1,0 +1,69 @@
+<html>
+    <head>
+         <meta charset="utf-8">
+         <title>Add Book and Review</title>
+         {% load static%}
+         <link rel="stylesheet" href="{% static 'belt/style2.css' %}">
+   </head>
+    <body>
+        <div id="links">
+            <a href="/books">Home</a> 
+            <a href="/">Logout</a> 
+        </div>
+        <h1>Add a new Book Title and a Review</h1>
+        {% for message in messages %}
+            <p style="color:red;">{{message}}</p>
+        {% endfor %}
+        <form action='submit' method='post'>    
+            {% csrf_token %}
+            <div>
+                <h3>  
+                    <label>
+                        Book Title: <input type="text" name="book_name" placeholder="Enter book title" style="margin-left: 49px;">
+                    </label> 
+                </h3>
+            </div>
+            <div>
+                <h3>Author:</h3> 
+                <label>
+                    Choose from the list:
+                    <select name="author">
+                                <option value="none"></option>
+                        {% for book in books %}
+                                <option value="{{book.author}}">{{book.author}}</option>
+                        {% endfor %}
+                    </select> 
+                </label>
+            </div>
+            <br>
+            <div>
+                   <label>
+                        Or add a new author: <input type="text" name="new_author"  placeholder="Enter the author of this book" style="margin-left: 50px;">
+                   </label>
+            </div>
+            <div>
+                <h3>
+                    <label>
+                        Review: <textarea name="content" rows="5"  cols="30"  placeholder="Enter review for this book" style="vertical-align: top; margin-left: 80px;"></textarea> 
+                    </label>
+                </h3>
+            </div>
+            <div>
+                <br>
+                <label>
+                    Rating: 
+                    <select name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    stars.
+                </label>
+            </div>
+            <br>
+            <input type="submit" value="Add Book and Review">
+        </form>
+    </body>
+</html>

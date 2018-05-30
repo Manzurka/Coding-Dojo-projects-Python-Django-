@@ -1,0 +1,66 @@
+<html>
+    <head>
+         <meta charset="utf-8">
+         <title>Login & Reg | Home</title>
+   </head>
+    <body>
+        <h1><strong> Registration<strong></h1>
+        {% for message in messages %}
+            <p style="color:red;">{{message}}</p>
+        {% endfor %}
+        <form action='add' method='post'>    
+            {% csrf_token %}
+            <div>
+                    <label>
+                    First Name: <input type="text" name="first_name" placeholder="Enter your first name" style="margin-left: 49px;">
+                    </label>
+            </div>
+            <div>
+                    <br>
+                    <label>
+                    Last Name: <input type="text" name="last_name"  placeholder="Enter your last name" style="margin-left: 50px;">
+                    </label>
+            </div>
+            <div>
+                <br>
+                    <label>
+                    Email: <input type="email" name="email"  placeholder="Enter your email address" style="margin-left: 80px;">
+                </label>
+                </div>
+                <div>
+                    <br>
+                <label>
+                    Password: <input type="password" name="password"  placeholder="Create a password (8 char)" style="margin-left: 57px;" >
+                </label>
+            </div>
+            <div>
+                    <br>
+                    <label>
+                    PW Confirmation: <input type="password" name="pw_confirmation"  placeholder="Re-enter your password" style="margin-left: 5px;">
+                    </label>
+            </div>
+                <input type="submit" value="Submit" style="margin:20px 20px 20px 200px;">
+         </form>
+         <h1>Login</h1>
+         <form action='login' method='post'>
+            {% csrf_token %}
+            <div>
+ 
+                    <p style="color:red;">{{request.session.notification}}</p>
+           
+                <label>
+                    Email: <input type="email" name="email"  placeholder="Enter your email address" style="margin-left: 80px;">
+                </label>
+            </div>
+            <div>
+                <br>
+                <label>
+                    Password: <input type="password" name="password"  placeholder="Enter your password" style="margin-left: 57px;" >
+                </label>
+            </div>
+            <input type="submit" value="Submit" style="margin:20px 20px 20px 200px;">
+            
+        </form>
+    </body>
+</html>
+         

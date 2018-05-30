@@ -1,0 +1,42 @@
+#message {
+    color:red;
+}
+table{
+    border: 3px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    border-left: 2px solid black;
+}
+th, tr:nth-child(even) {
+    background:rgb(209, 204, 204);
+}
+textarea {
+    vertical-align:top;
+}
+
+#red {
+    background:red;
+    color:white;
+}
+
+#green {
+    position:relative;
+    left:445px; 
+    background-color:green;
+    color:white;
+}
+form {
+    display: inline-block;
+    margin-left:30px;
+  
+}
+
+main {
+    width:50%;
+    margin:auto;
+    border:3px solid grey;
+    padding:30px;
+    
+}

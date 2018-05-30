@@ -1,0 +1,100 @@
+<html>
+    <head>
+         <meta charset="utf-8">
+         <title>Welcome</title>
+         {% load static%}
+         <link rel="stylesheet" href="{% static 'belt/style.css' %}">
+   </head>
+    <body>
+        <h1>WELCOME!</h1>
+        
+          
+        
+        <div class="welcome" >
+        <h1>Registration</h1>
+       
+        <form action='validate' method='post'>    
+            {% csrf_token %}
+            <div>
+                    <label>
+                    First Name: <input type="text" name="first_name" placeholder="Enter your first name" style="margin-left: 49px;">
+                    </label>
+                    
+            </div>
+            {% for message in messages %}
+                        {% if 'first_name' in message.extra_tags %}
+                            <p style="color:red;">{{message}}</p>
+                        {% endif %}
+            {% endfor %}
+            <div>
+                    <br>
+                    <label>
+                    Last Name: <input type="text" name="last_name"  placeholder="Enter your last name" style="margin-left: 50px;">
+                    </label>
+                  
+            </div>
+            {% for message in messages %}
+                {% if 'last_name' in message.extra_tags %}
+                    <p style="color:red;">{{message}}</p>
+                {% endif %}
+            {% endfor%}
+            <div>
+                <br>
+                    <label>
+                    Email: <input type="email" name="email"  placeholder="Enter your email address" style="margin-left: 80px;">
+                </label>
+                
+                </div>
+                {% for message in messages %}
+                        {% if 'email' in message.extra_tags %}
+                            <p style="color:red;">{{message}}</p>
+                        {% endif %}
+                {% endfor%}
+                <div>
+                    <br>
+                <label>
+                    Password: <input type="password" name="password"  placeholder="Create a password (8 char)" style="margin-left: 57px;" >
+                </label>
+                <!-- <p>*Password should be at least 8 characters</p> -->
+            </div>
+            {% for message in messages %}
+                {% if 'password' in message.extra_tags %}
+                    <p style="color:red;">{{message}}</p>
+                {% endif %}
+            {% endfor %}
+            <div>
+                    <br>
+                    <label>
+                    PW Confirmation: <input type="password" name="pw_confirmation"  placeholder="Re-enter your password" style="margin-left: 5px;">
+                    </label>
+            </div>
+                <input type="submit" value="Register" style="margin:20px 20px 20px 220px;">
+         </form>
+       </div>
+        <div class ="welcome">
+         <h1>Login</h1>
+         {% for message in messages %}
+            {% if 'login' in message.extra_tags %}
+                <p style="color:red;">{{message}}</p>
+            {% endif %}
+         {% endfor %}
+         <form action='login' method='post'>
+            {% csrf_token %}
+            <div> 
+                <label>
+                    Email: <input type="email" name="email"  placeholder="Enter your email address" style="margin-left: 80px;">
+                </label>
+            </div>
+            <div>
+                <br>
+                <label>
+                    Password: <input type="password" name="password"  placeholder="Enter your password" style="margin-left: 57px;" >
+                </label>
+            </div>
+            <input type="submit" value="Login" style="margin:20px 20px 20px 240px;">
+            
+        </form>
+    </div>
+    </body>
+</html>
+         

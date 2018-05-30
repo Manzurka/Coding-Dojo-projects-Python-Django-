@@ -1,0 +1,73 @@
+<html>
+    <head>
+         <meta charset="utf-8">
+         <title>Books Home</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         {% load static %}
+         <link rel="stylesheet" href="{% static 'belt/style.css' %}">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   </head>
+    <body>
+        
+            <h1>WELCOME {{request.session.name}}!</h1>
+            <div id="links">
+                <a href="/add">Add Book and Review</a> |
+                <a href="/">Logout</a>
+            </div>
+       
+        <div id="bookshelf">
+            <h1>Recent Book Reviews:</h1>
+            {% for book in books%}
+                <h2><a href="books/{{book.id}}">{{book.name}}</a></h2>
+                {% for review in reviews %}
+                    {% if review.book.id == book.id %}
+                        <p>Rating:
+                        {% if review.rating == 1 %}
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if review.rating == 2 %}
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if review.rating == 3 %}
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if review.rating == 4 %}
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if review.rating == 5 %}
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                        {% endif %}
+                        </p>
+                        <p><a href="user/{{review.user.id}}">{{review.user.first_name}}</a> says: {{review.content}}</p>
+                        <p>Posted on {{review.created_at}}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div id="scrollbar">
+            {% for book in books %} 
+            <p><a href="books/{{book.id}}">{{book.name}}</a></p>
+            {% endfor %}
+        </div>
+    </body>
+</html>

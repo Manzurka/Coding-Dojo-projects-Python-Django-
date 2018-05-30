@@ -1,0 +1,21 @@
+body{
+    width:1000px;
+}
+
+#links {
+    position: relative;
+    left:800px;
+}
+main {
+    display:inline-block;
+    vertical-align: top;
+    width:55%;
+}
+#review {
+    display:inline-block;
+    vertical-align: top;
+    width:42%;
+    margin:10px;
+    margin-top:100px;
+}
+

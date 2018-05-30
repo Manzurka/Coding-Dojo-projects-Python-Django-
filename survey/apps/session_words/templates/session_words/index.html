@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Survey Form</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'session_words/style.css' %}">
+    </head>
+    <body>
+        <div id="form">
+            <form action="/session_words/add_word" method="post">
+                {% csrf_token %}
+                <h2>Add a new word: <br><input style="margin:20px;" type="text" name="word"></h2>
+                <h5>Choose color</h5>
+                <input type="radio" id="red" name="color" value="red">
+                <label for="red">Red</label>
+                <br>
+                <input type="radio" id="green" name="color" value="green">
+                <label for="green">Green</label>
+                <br>
+                <input type="radio" id="blue" name="color" value="blue">
+                <label for="blue">Blue</label>
+                <br>
+                <br>
+                <input type="checkbox" id="caps" name="caps" value="caps">
+                <label for="caps">show in BIG fonts!</label>
+                <input type="hidden" name="time" value="{{timestamp}}">
+                <p><input type="submit" value="Add to Session"></p>
+            </form>
+        </div>
+        <div id="result">
+                <form action ="/session_words/clear" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Clear Session">
+                </form>
+                {% for word in request.session.list %}
+                    <p> <span class="{{word.color}} {{word.caps}}">{{word.word}}</span> - added on {{word.time}}</p>
+                {% endfor %}
+        </div>
+    </body>
+</html>
